@@ -32,6 +32,9 @@
     
     NSArray* result =[TestModel selectAll];
     NSLog(@"result:%@",result);
+    
+    //嫦娥
+    
 }
 
 - (void)didReceiveMemoryWarning {
