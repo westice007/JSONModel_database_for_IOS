@@ -16,10 +16,11 @@
 @property(nonatomic,assign)int primaryKey;
 //@property(nonatomic,retain)NSString* tableName;
 
--(void)addToBase;
--(void)updateToBase;
+-(void)addOneToBase;
+-(void)updateOneToBase;
 
 +(NSArray*)selectAll;
 +(NSArray*)selectWhere:(NSString*)where Order:(NSString*)order;
++(void)updateWhere:(NSString*)where NewData:(JSONDataModel*)newModel;  //newModel 有值的属性将更新到 满足where的条目 
 
 @end

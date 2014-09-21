@@ -146,7 +146,7 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     }
 }
 
--(void)addToBase{
+-(void)addOneToBase{
     NSMutableString* insertColSql = [NSMutableString stringWithFormat:@"INSERT INTO %@(",[self.class tableName]];
     NSMutableString* insertValSql = [NSMutableString stringWithFormat:@"values("];
     __block BOOL first = YES;
@@ -177,7 +177,7 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     [insertColSql appendFormat:@")"];
     [insertValSql appendFormat:@")"];
     NSString* insertSql = [NSString stringWithFormat:@"%@ %@",insertColSql,insertValSql];
-    NSLog(@"insertSql:%@",insertSql);
+    //NSLog(@"insertSql:%@",insertSql);
     char *err;
     if (sqlite3_exec(JSONDataModelDatabase, [insertSql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
         sqlite3_close(JSONDataModelDatabase);
@@ -247,10 +247,64 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     return result;
 }
 +(NSArray*)selectWhere:(NSString*)where Order:(NSString*)order{
-    return nil;
+    if (where == nil) {
+        where = @"";
+    }
+    if (order == nil) {
+        order = @"";
+    }
+    NSString* selectSql = [NSString stringWithFormat:@"SELECT * FROM %@ %@ %@",[self tableName],where,order];
+    NSMutableArray* result = [self selectWithSql:selectSql];
+    return result;
 }
 
+-(void)updateOneToBase{
+    //NSMutableString
+    //"INSERT OR REPLACE INTO PERSIONINFO(NAME,AGE,SEX,WEIGHT,ADDRESS)""VALUES(?,?,?,?,?);";
+    // UPDATE tablename SET name = 'xxx' ,age = 34 WHERE
+    if (self.primaryKey > 0) {
+        [self.class updateWhere:[NSString stringWithFormat:@"WHERE primaryKey = %d",self.primaryKey] NewData:self];
+    }else{
+        NSLog(@"primary key 那里去了? :%@",[self.class tableName]);
+    }
+    
+}
 
++(void)updateWhere:(NSString*)where NewData:(JSONDataModel*)newModel{
+    NSMutableString* updateSql = [NSMutableString stringWithFormat:@"UPDATE %@ SET ",[self.class tableName]];
+    __block BOOL first = YES;
+    
+    [newModel.propertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString* colType = obj;
+        id value = [newModel valueForKey:key];
+        
+        NSString* valueStr = @"";
+        if ([colType rangeOfString:@"NSString"].length > 0) {
+            valueStr = [NSString stringWithFormat:@"'%@'",value];
+        }else{
+            valueStr = [NSString stringWithFormat:@"%@",value];
+        }
+        
+        if (value != nil) {
+            if (first) {
+                [updateSql appendFormat:@"%@ = %@",key,valueStr];
+            }else{
+                [updateSql appendFormat:@",%@ = %@",key,valueStr];
+            }
+            first = NO;
+            
+        }
+        
+    }];
+    [updateSql appendFormat:@" %@",where];
+    
+    NSLog(@"updateSql:%@",updateSql);
+    char *err;
+    if (sqlite3_exec(JSONDataModelDatabase, [updateSql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
+        sqlite3_close(JSONDataModelDatabase);
+        NSLog(@"数据库更新 数据失败! :%@",updateSql);
+    }
+}
 
 -(NSDictionary*)getPropertys{
     NSMutableDictionary* result = [NSMutableDictionary dictionaryWithCapacity:30];
