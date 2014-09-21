@@ -28,9 +28,15 @@
 
 +(JSONDataModel*)dictToModel:(NSMutableDictionary*)dict;
 
++(JSONDataModel*)model;
+
 +(NSArray*)selectAll;
++(NSArray*)selectAllByOrder:(NSString*)order;
++(NSArray*)selectAllByOrder:(NSString*)order RowLimit:(int)rows;
 +(NSArray*)selectWhere:(NSString*)where;
 +(NSArray*)selectWhere:(NSString*)where Order:(NSString*)order RowLimit:(int)rows;
+
+
 +(void)updateWhere:(NSString*)where NewData:(JSONDataModel*)newModel;  //newModel 有值的属性将更新到 满足where的条目 
 +(void)deleteWhere:(NSString*)where;
 

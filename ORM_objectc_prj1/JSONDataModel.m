@@ -262,6 +262,14 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     
     return result;
 }
+
++(NSArray*)selectAllByOrder:(NSString*)order{
+    return [self selectWhere:nil Order:order RowLimit:0];
+}
++(NSArray*)selectAllByOrder:(NSString*)order RowLimit:(int)rows{
+    return [self selectWhere:nil Order:order RowLimit:rows];
+}
+
 +(NSArray*)selectWhere:(NSString*)where{
     return [self.class selectWhere:where Order:nil RowLimit:0];
 }
@@ -425,6 +433,10 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
 
 +(JSONDataModel*)dictToModel:(NSMutableDictionary*)dict{
     return nil;
+}
+
++(JSONDataModel*)model{
+    return [[self alloc] init];
 }
 
 -(NSString*)description{

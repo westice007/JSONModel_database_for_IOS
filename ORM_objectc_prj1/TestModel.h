@@ -20,6 +20,8 @@
 @property(nonatomic,retain)NSNumber* userBooks;
 @property(nonatomic,retain)NSString* userContry;
 
-@property(nonatomic,retain)NSString<IgnoreProper>* testProp;
+@property(nonatomic,retain)NSString<IgnoreProper>* testProp;    //JSONDict 和 database 属性将被忽略
+
+@property(nonatomic,retain)NSArray* houseList;
 
 @end
