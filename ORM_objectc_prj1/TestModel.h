@@ -11,13 +11,15 @@
 @interface TestModel : JSONDataModel
 
 
-@property(nonatomic,assign)NSString* userName;
-@property(nonatomic,assign)NSNumber* userAge;
+@property(nonatomic,retain)NSString* userName;
+@property(nonatomic,retain)NSNumber* userAge;
 
-@property(nonatomic,assign)NSString* userSchool;
+@property(nonatomic,retain)NSString* userSchool;
 
-@property(nonatomic,assign)NSNumber* userMoney;
-@property(nonatomic,assign)NSNumber* userBooks;
-@property(nonatomic,assign)NSString* userContry;
+@property(nonatomic,retain)NSNumber* userMoney;
+@property(nonatomic,retain)NSNumber* userBooks;
+@property(nonatomic,retain)NSString* userContry;
+
+@property(nonatomic,retain)NSString<IgnoreProper>* testProp;
 
 @end

@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
+@protocol IgnoreProper
+@end
+
+
 @interface JSONDataModel : NSObject{
     
 }
@@ -19,6 +23,10 @@
 -(void)addOneToBase;
 -(void)updateOneToBase;
 -(void)deleteOneFromBase;
+
+-(NSMutableDictionary*)modelToDict;
+
++(JSONDataModel*)dictToModel:(NSMutableDictionary*)dict;
 
 +(NSArray*)selectAll;
 +(NSArray*)selectWhere:(NSString*)where;

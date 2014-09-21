@@ -35,6 +35,11 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
 -(void)initDataBase{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
+#if TARGET_IPHONE_SIMULATOR
+    NSString*bundel=[[NSBundle mainBundle] resourcePath];
+    NSString*deskTopLocation=[[bundel substringToIndex:[bundel rangeOfString:@"Library"].location] stringByAppendingFormat:@"Desktop"];
+    documentsDirectory = deskTopLocation;
+#endif
     NSString* basePath = [documentsDirectory stringByAppendingPathComponent:@"JSONDataModelDatabase.sqlite3"];
     NSLog(@"JSONDataModelDatabase basePath:%@",basePath);
     if (sqlite3_open([basePath UTF8String], &JSONDataModelDatabase) != SQLITE_OK) {
@@ -61,18 +66,21 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
         
         __block BOOL first = YES;
         [self.propertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            NSString* colType = @"";
+            NSString* colType = nil;
             if ([obj rangeOfString:@"NSString"].length > 0) {
                 colType = @"TEXT";
             }else if ([obj rangeOfString:@"NSNumber"].length > 0){
                 colType = @"NUMERIC";
             }
-            if (first) {
-                [sqlCreate appendFormat:@"%@ %@",key,colType];
-            }else{
-                [sqlCreate appendFormat:@",%@ %@",key,colType];
+            if (colType != nil) {
+                if (first) {
+                    [sqlCreate appendFormat:@"%@ %@",key,colType];
+                }else{
+                    [sqlCreate appendFormat:@",%@ %@",key,colType];
+                }
+                first = NO;
             }
-            first = NO;
+            
         }];
         [sqlCreate appendString:@")"];
         NSLog(@"sqlCreate:%@",sqlCreate);
@@ -111,7 +119,15 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
         
         NSMutableArray* addedPropertys = [NSMutableArray arrayWithCapacity:10];
         [allPropertyNames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            if (![allColumnName containsObject:obj]) {
+            NSString* colTypeStr = [self.propertyDict objectForKey:obj];
+            NSString* colType = nil;
+            if ([colTypeStr rangeOfString:@"NSString"].length > 0) {
+                colType = @"TEXT";
+            }else if ([colTypeStr rangeOfString:@"NSNumber"].length > 0){
+                colType = @"NUMERIC";
+            }
+            
+            if (colType != nil && ![allColumnName containsObject:obj]) {
                 [addedPropertys addObject:obj];
             }
         }];
@@ -153,31 +169,31 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     [self.propertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSString* colType = obj;
         id value = [self valueForKey:key];
-        
-        NSString* valueStr = @"";
-        if ([colType rangeOfString:@"NSString"].length > 0) {
-            valueStr = [NSString stringWithFormat:@"'%@'",value];
-        }else{
-            valueStr = [NSString stringWithFormat:@"%@",value];
-        }
-        
-        if (value != nil) {
-            if (first) {
-                [insertColSql appendFormat:@"%@",key];
-                [insertValSql appendFormat:@"%@",valueStr];
+        if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {
+            NSString* valueStr = @"";
+            if ([colType rangeOfString:@"NSString"].length > 0) {
+                valueStr = [NSString stringWithFormat:@"'%@'",value];
             }else{
-                [insertColSql appendFormat:@",%@",key];
-                [insertValSql appendFormat:@",%@",valueStr];
+                valueStr = [NSString stringWithFormat:@"%@",value];
             }
-            first = NO;
             
+            if (value != nil) {
+                if (first) {
+                    [insertColSql appendFormat:@"%@",key];
+                    [insertValSql appendFormat:@"%@",valueStr];
+                }else{
+                    [insertColSql appendFormat:@",%@",key];
+                    [insertValSql appendFormat:@",%@",valueStr];
+                }
+                first = NO;
+                
+            }
         }
-        
     }];
     [insertColSql appendFormat:@")"];
     [insertValSql appendFormat:@")"];
     NSString* insertSql = [NSString stringWithFormat:@"%@ %@",insertColSql,insertValSql];
-    //NSLog(@"insertSql:%@",insertSql);
+    NSLog(@"insertSql:%@",insertSql);
     char *err;
     if (sqlite3_exec(JSONDataModelDatabase, [insertSql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
         sqlite3_close(JSONDataModelDatabase);
@@ -196,7 +212,7 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
         //查询结果集中一条一条的遍历所有的记录，这里的数字对应的是列值,注意这里的列值，跟上面sqlite3_bind_text绑定的列值不一样！一定要分开，不然会crash，只有这一处的列号不同，注意！
         while (sqlite3_step(statement) == SQLITE_ROW) {
             JSONDataModel* model = [[self alloc] init];
-            int colCount = sqlite3_column_int(statement,0);
+            int colCount = sqlite3_column_count(statement);
             for (int i = 0; i < colCount; i++) {
                 char* ccolName = (char*)sqlite3_column_name(statement, i);
                 char* cstrText   = (char*)sqlite3_column_text(statement, i);
@@ -292,22 +308,23 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     [newModel.propertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSString* colType = obj;
         id value = [newModel valueForKey:key];
-        
-        NSString* valueStr = @"";
-        if ([colType rangeOfString:@"NSString"].length > 0) {
-            valueStr = [NSString stringWithFormat:@"'%@'",value];
-        }else{
-            valueStr = [NSString stringWithFormat:@"%@",value];
-        }
-        
-        if (value != nil) {
-            if (first) {
-                [updateSql appendFormat:@"%@ = %@",key,valueStr];
+        if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {
+            NSString* valueStr = @"";
+            if ([colType rangeOfString:@"NSString"].length > 0) {
+                valueStr = [NSString stringWithFormat:@"'%@'",value];
             }else{
-                [updateSql appendFormat:@",%@ = %@",key,valueStr];
+                valueStr = [NSString stringWithFormat:@"%@",value];
             }
-            first = NO;
             
+            if (value != nil) {
+                if (first) {
+                    [updateSql appendFormat:@"%@ = %@",key,valueStr];
+                }else{
+                    [updateSql appendFormat:@",%@ = %@",key,valueStr];
+                }
+                first = NO;
+                
+            }
         }
         
     }];
@@ -346,6 +363,9 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
         char * ctype = property_copyAttributeValue(property, "T");
         NSString* propertyName = [NSString stringWithUTF8String:cname];
         NSString* type = [NSString stringWithUTF8String:ctype];
+        if ([type containsString:@"IgnoreProper"]) {
+            continue;
+        }
         if ([type rangeOfString:@"NSNumber"].length > 0) {
             
         }
@@ -356,6 +376,55 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     free(properties);
     //return propertyNamesArray;
     return result;
+}
+
+-(NSMutableDictionary*)getDictDictWithModelDict:(NSDictionary*)mDict{
+    NSMutableDictionary* rDict = [NSMutableDictionary dictionaryWithCapacity:10];
+    [mDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        JSONDataModel* tempModel = obj;
+        [rDict setObject:[tempModel modelToDict] forKey:key];
+    }];
+    
+    return rDict;
+}
+
+-(NSMutableArray*)getDictArrayWithModelArray:(NSArray*)mArray{
+    NSMutableArray * rArray = [NSMutableArray arrayWithCapacity:10];
+    [mArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        JSONDataModel* tempModel = obj;
+        
+        [rArray addObject:[tempModel modelToDict]];
+    }];
+    return rArray;
+}
+
+-(NSMutableDictionary*)modelToDict{
+
+    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:10];
+    [self.propertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString* colType = obj;
+        id value = [self valueForKey:key];
+        
+        if ([value isKindOfClass:[NSNumber class]]) {
+            [dict setObject:value forKey:key];
+        }else if ([value isKindOfClass:[NSString class]]){
+            [dict setObject:value forKey:key];
+        }else if ([value isKindOfClass:[JSONDataModel class]]){
+            [dict setObject:[value modelToDict] forKey:key];
+        }else if ([value isKindOfClass:[NSArray class]]){
+            [dict setObject:[self getDictArrayWithModelArray:value] forKey:key];
+        }else if ([value isKindOfClass:[NSDictionary class]]){
+            [dict setObject:[self getDictDictWithModelDict:value] forKey:key];
+        }
+        
+        
+        
+    }];
+    return dict;
+}
+
++(JSONDataModel*)dictToModel:(NSMutableDictionary*)dict{
+    return nil;
 }
 
 -(NSString*)description{

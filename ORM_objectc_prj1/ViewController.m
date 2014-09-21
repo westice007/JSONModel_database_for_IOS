@@ -22,24 +22,33 @@
     
     
     TestModel* model = [[TestModel alloc] init];
-    [model setValue:@123456789012345 forKey:@"userAge"];
-    model.userMoney = @45.3498;
-    model.userName = @"爸爸回来了";
+    [model setValue:@1234567890 forKey:@"userAge"];
+    model.userMoney = @98.4;
+    model.userName = @"爸爸回来了去哪儿了？";
     
     //NSLog(@"model:%@",model);
     
     //[model addOneToBase];
     
     NSArray* result =[TestModel selectAll];
+    /*
     [result enumerateObjectsUsingBlock:^(TestModel* obj, NSUInteger idx, BOOL *stop) {
         obj.userBooks = [NSNumber numberWithInt:666];
         [obj updateOneToBase];
     }];
     result =[TestModel selectAll];
+    */
     NSLog(@"result:%@",result);
     
     //NSArray* result2 = [TestModel selectWhere:@"WHERE userAge = 18" Order:nil];
     //NSLog(@"result2:%@",result2);
+     
+    
+    TestModel* model2 = [[TestModel alloc] init];
+    model2.userAge = @89;
+    model2.userName = @"hahahah呵呵好";
+    NSLog(@"model2:%@",[model2 modelToDict]);
+    
 }
 
 - (void)didReceiveMemoryWarning {
