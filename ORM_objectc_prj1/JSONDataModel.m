@@ -185,12 +185,9 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     }
 }
 
-
-+(NSArray*)selectAll{
-    
++(NSArray*)selectWithSql:(NSString*)selectSql{
     NSMutableArray* result = [NSMutableArray arrayWithCapacity:50];
     
-    NSString* selectSql = [NSString stringWithFormat:@"SELECT * FROM %@",[self tableName]];
     sqlite3_stmt *statement = nil;
     if (sqlite3_prepare_v2(JSONDataModelDatabase, [selectSql UTF8String], -1, &statement, NULL) != SQLITE_OK) {
         NSLog(@"Error: failed to prepare statement with message:get testValue.");
@@ -237,6 +234,15 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
         }
     }
     
+    
+    return result;
+}
+
++(NSArray*)selectAll{
+    
+    NSString* selectSql = [NSString stringWithFormat:@"SELECT * FROM %@",[self tableName]];
+    
+    NSMutableArray* result = [self selectWithSql:selectSql];
     
     return result;
 }
