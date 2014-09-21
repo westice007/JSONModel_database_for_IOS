@@ -386,7 +386,7 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     return result;
 }
 
--(NSMutableDictionary*)getDictDictWithModelDict:(NSDictionary*)mDict{
++(NSMutableDictionary*)getDictDictWithModelDict:(NSDictionary*)mDict{
     NSMutableDictionary* rDict = [NSMutableDictionary dictionaryWithCapacity:10];
     [mDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         JSONDataModel* tempModel = obj;
@@ -396,7 +396,17 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     return rDict;
 }
 
--(NSMutableArray*)getDictArrayWithModelArray:(NSArray*)mArray{
++(NSMutableArray*)dictArrayToModelArray:(NSMutableArray*)dArray{
+    NSMutableArray* mArray = [NSMutableArray arrayWithCapacity:10];
+    
+    [dArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [mArray addObject:[self dictToModel:obj]];
+    }];
+    
+    return mArray;
+}
+
++(NSMutableArray*)getDictArrayWithModelArray:(NSArray*)mArray{
     NSMutableArray * rArray = [NSMutableArray arrayWithCapacity:10];
     [mArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         JSONDataModel* tempModel = obj;
@@ -420,9 +430,9 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
         }else if ([value isKindOfClass:[JSONDataModel class]]){
             [dict setObject:[value modelToDict] forKey:key];
         }else if ([value isKindOfClass:[NSArray class]]){
-            [dict setObject:[self getDictArrayWithModelArray:value] forKey:key];
+            [dict setObject:[self.class getDictArrayWithModelArray:value] forKey:key];
         }else if ([value isKindOfClass:[NSDictionary class]]){
-            [dict setObject:[self getDictDictWithModelDict:value] forKey:key];
+            [dict setObject:[self.class getDictDictWithModelDict:value] forKey:key];
         }
         
         
@@ -432,7 +442,11 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
 }
 
 +(JSONDataModel*)dictToModel:(NSMutableDictionary*)dict{
-    return nil;
+    JSONDataModel* tempM = [self model];
+    [tempM.propertyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [tempM setValue:obj forKey:key];
+    }];
+    return tempM;
 }
 
 +(JSONDataModel*)model{

@@ -25,8 +25,11 @@
 -(void)deleteOneFromBase;
 
 -(NSMutableDictionary*)modelToDict;
-
++(NSMutableDictionary*)getDictDictWithModelDict:(NSDictionary*)mDict;
++(NSMutableArray*)getDictArrayWithModelArray:(NSArray*)mArray;  //model数组转换成 dict数组
 +(JSONDataModel*)dictToModel:(NSMutableDictionary*)dict;
++(NSMutableArray*)dictArrayToModelArray:(NSMutableArray*)dArray;  //纯数组 转换成 model数组
+
 
 +(JSONDataModel*)model;
 
