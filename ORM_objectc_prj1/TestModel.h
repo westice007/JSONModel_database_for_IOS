@@ -24,4 +24,6 @@
 
 @property(nonatomic,retain)NSArray* houseList;
 
+@property(nonatomic,retain)NSString* userBlog;
+
 @end
