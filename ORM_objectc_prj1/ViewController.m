@@ -32,7 +32,7 @@
     
     NSArray* result =[TestModel selectAll];
     [result enumerateObjectsUsingBlock:^(TestModel* obj, NSUInteger idx, BOOL *stop) {
-        obj.userBooks = [NSNumber numberWithInt:555];
+        obj.userBooks = [NSNumber numberWithInt:666];
         [obj updateOneToBase];
     }];
     result =[TestModel selectAll];

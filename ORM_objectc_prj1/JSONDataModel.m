@@ -246,14 +246,21 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
     
     return result;
 }
-+(NSArray*)selectWhere:(NSString*)where Order:(NSString*)order{
++(NSArray*)selectWhere:(NSString*)where{
+    return [self.class selectWhere:where Order:nil RowLimit:0];
+}
++(NSArray*)selectWhere:(NSString*)where Order:(NSString*)order RowLimit:(int)rows{
     if (where == nil) {
         where = @"";
     }
     if (order == nil) {
         order = @"";
     }
-    NSString* selectSql = [NSString stringWithFormat:@"SELECT * FROM %@ %@ %@",[self tableName],where,order];
+    NSString* limit = @"";
+    if (rows != 0) {
+        limit = [NSString stringWithFormat:@"LIMIT %d",rows];
+    }
+    NSString* selectSql = [NSString stringWithFormat:@"SELECT * FROM %@ %@ %@ %@",[self tableName],where,order,limit];
     NSMutableArray* result = [self selectWithSql:selectSql];
     return result;
 }
@@ -268,6 +275,14 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
         NSLog(@"primary key 那里去了? :%@",[self.class tableName]);
     }
     
+}
+
+-(void)deleteOneFromBase{
+    if (self.primaryKey > 0) {
+        [self.class deleteWhere:[NSString stringWithFormat:@"WHERE primaryKey = %d",self.primaryKey]];
+    }else{
+        NSLog(@"primary key 那里去了? :%@",[self.class tableName]);
+    }
 }
 
 +(void)updateWhere:(NSString*)where NewData:(JSONDataModel*)newModel{
@@ -304,6 +319,21 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
         sqlite3_close(JSONDataModelDatabase);
         NSLog(@"数据库更新 数据失败! :%@",updateSql);
     }
+}
+
++(void)deleteWhere:(NSString*)where{
+    if ([where containsString:@"WHERE"]) {
+        NSMutableString* delSql = [NSMutableString stringWithFormat:@"DELETE FROM %@ %@",[self.class tableName],where];
+        NSLog(@"delSql:%@",delSql);
+        char *err;
+        if (sqlite3_exec(JSONDataModelDatabase, [delSql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
+            sqlite3_close(JSONDataModelDatabase);
+            NSLog(@"数据库更新 数据失败! :%@",delSql);
+        }
+    }else{
+        NSLog(@"删除%@ 时没写 WHERE",[self.class tableName]);
+    }
+    
 }
 
 -(NSDictionary*)getPropertys{
