@@ -91,11 +91,10 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
             NSLog(@"数据库创建表失败!");
         }
         
-
-        
+        NSString* pragmaSql = [NSString stringWithFormat:@"PRAGMA table_info ('%@')",[self.class tableName]];
         NSMutableDictionary* allColumnType = [NSMutableDictionary dictionaryWithCapacity:10];
         sqlite3_stmt * statement;
-        int rc = sqlite3_prepare_v2(JSONDataModelDatabase, "PRAGMA table_info ('TestModel')", -1, &statement, NULL);
+        int rc = sqlite3_prepare_v2(JSONDataModelDatabase, [pragmaSql UTF8String], -1, &statement, NULL);
         
         if (rc==SQLITE_OK)
         {
@@ -317,14 +316,15 @@ static NSMutableDictionary* tableNamesCheckedDict = nil;
         NSString* colType = obj;
         id value = [newModel valueForKey:key];
         if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {
-            NSString* valueStr = @"";
+            NSString* valueStr = nil;
             if ([colType rangeOfString:@"NSString"].length > 0) {
                 valueStr = [NSString stringWithFormat:@"'%@'",value];
-            }else{
+            }
+            if ([colType containsString:@"NSNumber"]) {
                 valueStr = [NSString stringWithFormat:@"%@",value];
             }
             
-            if (value != nil) {
+            if (valueStr != nil && value != nil) {
                 if (first) {
                     [updateSql appendFormat:@"%@ = %@",key,valueStr];
                 }else{

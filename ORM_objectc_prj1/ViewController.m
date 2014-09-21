@@ -31,13 +31,14 @@
     //[model addOneToBase];
     
     NSArray* result =[TestModel selectAllByOrder:@"ORDER BY userMoney ASC"];
-    /*
+    
     [result enumerateObjectsUsingBlock:^(TestModel* obj, NSUInteger idx, BOOL *stop) {
-        obj.userBooks = [NSNumber numberWithInt:666];
+        obj.userBooks = [NSNumber numberWithInt:883];
+        obj.userMoney = [NSNumber numberWithInt:rand()];
         [obj updateOneToBase];
     }];
     result =[TestModel selectAll];
-    */
+    
     NSLog(@"result:%@",result);
     
     //NSArray* result2 = [TestModel selectWhere:@"WHERE userAge = 18" Order:nil];
