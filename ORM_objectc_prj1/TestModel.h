@@ -22,7 +22,7 @@
 
 @property(nonatomic,retain)NSString<IgnoreProper>* testProp;    //JSONDict 和 database 属性将被忽略
 
-@property(nonatomic,retain)NSArray* houseList;
+@property(nonatomic,retain)NSArray<IgnoreProper>* houseList;
 
 @property(nonatomic,retain)NSString* userBlog;
 

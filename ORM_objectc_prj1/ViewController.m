@@ -22,13 +22,13 @@
     
     
     TestModel* model = [[TestModel alloc] init];
-    [model setValue:@1234567890 forKey:@"userAge"];
+
     model.userMoney = @98.4;
     model.userName = @"爸爸回来了去哪儿了？";
     
     //NSLog(@"model:%@",model);
     
-    //[model addOneToBase];
+    [model updateOneToBase];
     
     NSArray* result =[TestModel selectAllByOrder:@"ORDER BY userMoney ASC"];
     
