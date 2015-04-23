@@ -8,30 +8,42 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "PureJSONData.h"
+#import "FMDatabaseQueue.h"
+#import "FMDatabase.h"
+typedef void (^CustomVoidIntBlock)(int);
 
-@protocol IgnoreProper
+@interface BlockClass : NSObject
+
+@property(nonatomic,retain)CustomVoidIntBlock voidintBlock;
+
 @end
 
 
-@interface JSONDataModel : NSObject{
+@interface JSONDataModel : PureJSONData{
     
 }
-@property(nonatomic,retain)NSDictionary* propertyDict;
+
 @property(nonatomic,assign)int primaryKey;
+@property(nonatomic,retain)BlockClass<IgnoreProper>* insertBlock;
+
 //@property(nonatomic,retain)NSString* tableName;
+
++(FMDatabaseQueue*)shareFBDBQueue;
 
 -(void)addOneToBase;
 -(void)updateOneToBase;
 -(void)deleteOneFromBase;
 
--(NSMutableDictionary*)modelToDict;
-+(NSMutableDictionary*)getDictDictWithModelDict:(NSDictionary*)mDict;
-+(NSMutableArray*)getDictArrayWithModelArray:(NSArray*)mArray;  //model数组转换成 dict数组
-+(JSONDataModel*)dictToModel:(NSMutableDictionary*)dict;
-+(NSMutableArray*)dictArrayToModelArray:(NSMutableArray*)dArray;  //纯数组 转换成 model数组
+//-(void)updateOneToBaseWithKey:(NSString*)colName Value:(id)value;
 
 
-+(JSONDataModel*)model;
+-(NSString*)filterChars:(NSString*)srcStr;
+
++(JSONDataModel*)selectByPrimaryKey:(int)pKey;
+
++(void)createIndexForColumn:(NSString*)columnName;
+
 
 +(NSArray*)selectAll;
 +(NSArray*)selectAllByOrder:(NSString*)order;
@@ -39,9 +51,15 @@
 +(NSArray*)selectWhere:(NSString*)where;
 +(NSArray*)selectWhere:(NSString*)where Order:(NSString*)order RowLimit:(int)rows;
 
++(NSArray*)selectWhere:(NSString*)where IgnoreColumns:(NSArray*)columns Order:(NSString*)order RowLimit:(int)rows;
+
+//+(void)replaceWhere:(NSString*)where NewData:(JSONDataModel*)newModel;
 
 +(void)updateWhere:(NSString*)where NewData:(JSONDataModel*)newModel;  //newModel 有值的属性将更新到 满足where的条目 
 +(void)deleteWhere:(NSString*)where;
 
++(int)countWhere:(NSString*)where;
+
++(void)clearThisTable;
 
 @end

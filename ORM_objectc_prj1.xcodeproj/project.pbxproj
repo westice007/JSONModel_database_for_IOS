@@ -7,29 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85BD7B4C1AE8A09E00AD6874 /* JSONDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BD7B491AE8A09E00AD6874 /* JSONDataModel.m */; };
+		85BD7B4D1AE8A09E00AD6874 /* PureJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BD7B4B1AE8A09E00AD6874 /* PureJSONData.m */; };
+		85BD7B5A1AE8A0DF00AD6874 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BD7B501AE8A0DF00AD6874 /* FMDatabase.m */; };
+		85BD7B5B1AE8A0DF00AD6874 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BD7B521AE8A0DF00AD6874 /* FMDatabaseAdditions.m */; };
+		85BD7B5C1AE8A0DF00AD6874 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BD7B541AE8A0DF00AD6874 /* FMDatabasePool.m */; };
+		85BD7B5D1AE8A0DF00AD6874 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BD7B561AE8A0DF00AD6874 /* FMDatabaseQueue.m */; };
+		85BD7B5E1AE8A0DF00AD6874 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BD7B591AE8A0DF00AD6874 /* FMResultSet.m */; };
 		C8FFC44E19CDD32C00943071 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FFC44D19CDD32C00943071 /* main.m */; };
 		C8FFC45119CDD32C00943071 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FFC45019CDD32C00943071 /* AppDelegate.m */; };
 		C8FFC45419CDD32C00943071 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FFC45319CDD32C00943071 /* ViewController.m */; };
 		C8FFC45719CDD32C00943071 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8FFC45519CDD32C00943071 /* Main.storyboard */; };
 		C8FFC45919CDD32C00943071 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FFC45819CDD32C00943071 /* Images.xcassets */; };
 		C8FFC45C19CDD32C00943071 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FFC45A19CDD32C00943071 /* LaunchScreen.xib */; };
-		C8FFC46819CDD32C00943071 /* ORM_objectc_prj1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FFC46719CDD32C00943071 /* ORM_objectc_prj1Tests.m */; };
-		C8FFC47319CDD34B00943071 /* JSONDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FFC47219CDD34B00943071 /* JSONDataModel.m */; };
 		C8FFC47619CDD4CD00943071 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FFC47519CDD4CD00943071 /* TestModel.m */; };
 		C8FFC47819CDE42E00943071 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FFC47719CDE42E00943071 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C8FFC46219CDD32C00943071 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C8FFC44019CDD32C00943071 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C8FFC44719CDD32C00943071;
-			remoteInfo = ORM_objectc_prj1;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		85BD7B481AE8A09E00AD6874 /* JSONDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDataModel.h; sourceTree = "<group>"; };
+		85BD7B491AE8A09E00AD6874 /* JSONDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONDataModel.m; sourceTree = "<group>"; };
+		85BD7B4A1AE8A09E00AD6874 /* PureJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureJSONData.h; sourceTree = "<group>"; };
+		85BD7B4B1AE8A09E00AD6874 /* PureJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureJSONData.m; sourceTree = "<group>"; };
+		85BD7B4F1AE8A0DF00AD6874 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		85BD7B501AE8A0DF00AD6874 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		85BD7B511AE8A0DF00AD6874 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		85BD7B521AE8A0DF00AD6874 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		85BD7B531AE8A0DF00AD6874 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		85BD7B541AE8A0DF00AD6874 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		85BD7B551AE8A0DF00AD6874 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		85BD7B561AE8A0DF00AD6874 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		85BD7B571AE8A0DF00AD6874 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		85BD7B581AE8A0DF00AD6874 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		85BD7B591AE8A0DF00AD6874 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		C8FFC44819CDD32C00943071 /* ORM_objectc_prj1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ORM_objectc_prj1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FFC44C19CDD32C00943071 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8FFC44D19CDD32C00943071 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,11 +50,6 @@
 		C8FFC45619CDD32C00943071 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C8FFC45819CDD32C00943071 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C8FFC45B19CDD32C00943071 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		C8FFC46119CDD32C00943071 /* ORM_objectc_prj1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ORM_objectc_prj1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8FFC46619CDD32C00943071 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C8FFC46719CDD32C00943071 /* ORM_objectc_prj1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ORM_objectc_prj1Tests.m; sourceTree = "<group>"; };
-		C8FFC47119CDD34B00943071 /* JSONDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDataModel.h; sourceTree = "<group>"; };
-		C8FFC47219CDD34B00943071 /* JSONDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONDataModel.m; sourceTree = "<group>"; };
 		C8FFC47419CDD4CD00943071 /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
 		C8FFC47519CDD4CD00943071 /* TestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
 		C8FFC47719CDE42E00943071 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -59,22 +64,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C8FFC45E19CDD32C00943071 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85BD7B471AE8A09200AD6874 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85BD7B481AE8A09E00AD6874 /* JSONDataModel.h */,
+				85BD7B491AE8A09E00AD6874 /* JSONDataModel.m */,
+				85BD7B4A1AE8A09E00AD6874 /* PureJSONData.h */,
+				85BD7B4B1AE8A09E00AD6874 /* PureJSONData.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		85BD7B4E1AE8A0CF00AD6874 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				85BD7B4F1AE8A0DF00AD6874 /* FMDatabase.h */,
+				85BD7B501AE8A0DF00AD6874 /* FMDatabase.m */,
+				85BD7B511AE8A0DF00AD6874 /* FMDatabaseAdditions.h */,
+				85BD7B521AE8A0DF00AD6874 /* FMDatabaseAdditions.m */,
+				85BD7B531AE8A0DF00AD6874 /* FMDatabasePool.h */,
+				85BD7B541AE8A0DF00AD6874 /* FMDatabasePool.m */,
+				85BD7B551AE8A0DF00AD6874 /* FMDatabaseQueue.h */,
+				85BD7B561AE8A0DF00AD6874 /* FMDatabaseQueue.m */,
+				85BD7B571AE8A0DF00AD6874 /* FMDB.h */,
+				85BD7B581AE8A0DF00AD6874 /* FMResultSet.h */,
+				85BD7B591AE8A0DF00AD6874 /* FMResultSet.m */,
+			);
+			name = FMDB;
+			sourceTree = "<group>";
+		};
 		C8FFC43F19CDD32C00943071 = {
 			isa = PBXGroup;
 			children = (
 				C8FFC47719CDE42E00943071 /* libsqlite3.dylib */,
 				C8FFC44A19CDD32C00943071 /* ORM_objectc_prj1 */,
-				C8FFC46419CDD32C00943071 /* ORM_objectc_prj1Tests */,
 				C8FFC44919CDD32C00943071 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				C8FFC44819CDD32C00943071 /* ORM_objectc_prj1.app */,
-				C8FFC46119CDD32C00943071 /* ORM_objectc_prj1Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +116,8 @@
 		C8FFC44A19CDD32C00943071 /* ORM_objectc_prj1 */ = {
 			isa = PBXGroup;
 			children = (
+				85BD7B4E1AE8A0CF00AD6874 /* FMDB */,
+				85BD7B471AE8A09200AD6874 /* Model */,
 				C8FFC44F19CDD32C00943071 /* AppDelegate.h */,
 				C8FFC45019CDD32C00943071 /* AppDelegate.m */,
 				C8FFC45219CDD32C00943071 /* ViewController.h */,
@@ -99,8 +126,6 @@
 				C8FFC45819CDD32C00943071 /* Images.xcassets */,
 				C8FFC45A19CDD32C00943071 /* LaunchScreen.xib */,
 				C8FFC44B19CDD32C00943071 /* Supporting Files */,
-				C8FFC47119CDD34B00943071 /* JSONDataModel.h */,
-				C8FFC47219CDD34B00943071 /* JSONDataModel.m */,
 				C8FFC47419CDD4CD00943071 /* TestModel.h */,
 				C8FFC47519CDD4CD00943071 /* TestModel.m */,
 			);
@@ -112,23 +137,6 @@
 			children = (
 				C8FFC44C19CDD32C00943071 /* Info.plist */,
 				C8FFC44D19CDD32C00943071 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C8FFC46419CDD32C00943071 /* ORM_objectc_prj1Tests */ = {
-			isa = PBXGroup;
-			children = (
-				C8FFC46719CDD32C00943071 /* ORM_objectc_prj1Tests.m */,
-				C8FFC46519CDD32C00943071 /* Supporting Files */,
-			);
-			path = ORM_objectc_prj1Tests;
-			sourceTree = "<group>";
-		};
-		C8FFC46519CDD32C00943071 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C8FFC46619CDD32C00943071 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -153,24 +161,6 @@
 			productReference = C8FFC44819CDD32C00943071 /* ORM_objectc_prj1.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C8FFC46019CDD32C00943071 /* ORM_objectc_prj1Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C8FFC46E19CDD32C00943071 /* Build configuration list for PBXNativeTarget "ORM_objectc_prj1Tests" */;
-			buildPhases = (
-				C8FFC45D19CDD32C00943071 /* Sources */,
-				C8FFC45E19CDD32C00943071 /* Frameworks */,
-				C8FFC45F19CDD32C00943071 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C8FFC46319CDD32C00943071 /* PBXTargetDependency */,
-			);
-			name = ORM_objectc_prj1Tests;
-			productName = ORM_objectc_prj1Tests;
-			productReference = C8FFC46119CDD32C00943071 /* ORM_objectc_prj1Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -182,10 +172,6 @@
 				TargetAttributes = {
 					C8FFC44719CDD32C00943071 = {
 						CreatedOnToolsVersion = 6.0.1;
-					};
-					C8FFC46019CDD32C00943071 = {
-						CreatedOnToolsVersion = 6.0.1;
-						TestTargetID = C8FFC44719CDD32C00943071;
 					};
 				};
 			};
@@ -203,7 +189,6 @@
 			projectRoot = "";
 			targets = (
 				C8FFC44719CDD32C00943071 /* ORM_objectc_prj1 */,
-				C8FFC46019CDD32C00943071 /* ORM_objectc_prj1Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -219,13 +204,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C8FFC45F19CDD32C00943071 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -234,30 +212,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8FFC45419CDD32C00943071 /* ViewController.m in Sources */,
+				85BD7B4D1AE8A09E00AD6874 /* PureJSONData.m in Sources */,
 				C8FFC47619CDD4CD00943071 /* TestModel.m in Sources */,
+				85BD7B5A1AE8A0DF00AD6874 /* FMDatabase.m in Sources */,
+				85BD7B5C1AE8A0DF00AD6874 /* FMDatabasePool.m in Sources */,
+				85BD7B5D1AE8A0DF00AD6874 /* FMDatabaseQueue.m in Sources */,
 				C8FFC45119CDD32C00943071 /* AppDelegate.m in Sources */,
+				85BD7B4C1AE8A09E00AD6874 /* JSONDataModel.m in Sources */,
+				85BD7B5E1AE8A0DF00AD6874 /* FMResultSet.m in Sources */,
 				C8FFC44E19CDD32C00943071 /* main.m in Sources */,
-				C8FFC47319CDD34B00943071 /* JSONDataModel.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C8FFC45D19CDD32C00943071 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C8FFC46819CDD32C00943071 /* ORM_objectc_prj1Tests.m in Sources */,
+				85BD7B5B1AE8A0DF00AD6874 /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C8FFC46319CDD32C00943071 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C8FFC44719CDD32C00943071 /* ORM_objectc_prj1 */;
-			targetProxy = C8FFC46219CDD32C00943071 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C8FFC45519CDD32C00943071 /* Main.storyboard */ = {
@@ -375,40 +343,6 @@
 			};
 			name = Release;
 		};
-		C8FFC46F19CDD32C00943071 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ORM_objectc_prj1Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ORM_objectc_prj1.app/ORM_objectc_prj1";
-			};
-			name = Debug;
-		};
-		C8FFC47019CDD32C00943071 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ORM_objectc_prj1Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ORM_objectc_prj1.app/ORM_objectc_prj1";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -428,14 +362,7 @@
 				C8FFC46D19CDD32C00943071 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		C8FFC46E19CDD32C00943071 /* Build configuration list for PBXNativeTarget "ORM_objectc_prj1Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C8FFC46F19CDD32C00943071 /* Debug */,
-				C8FFC47019CDD32C00943071 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
