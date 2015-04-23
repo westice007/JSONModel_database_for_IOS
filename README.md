@@ -1,0 +1,1 @@
+# JSONModel_database_for_IOSvery easy for NSObject to Database PureJSONData 负责NSObject对象 和 NSDictionary或NSArray 之间的转换，可以嵌套。JSONDataModel 负责NSOjbect 对象 到Sqlite数据库的转换，不能嵌套，支持忽略不需要存储的字段。底层使用FMDatabaseQueue  做Sqlite存储 (线程安全)
